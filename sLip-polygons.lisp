@@ -107,3 +107,39 @@
 (defun-js %console-log (string)
   "console.log(string);")
 
+(defun-js %add-canvas-mouse-listener ()
+  "function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+  var canvas = document.getElementById('thy-canvas');
+  var context = canvas.getContext('2d');
+
+  canvas.addEventListener('mousemove', function(evt) {
+    var mousePos = getMousePos(canvas, evt);
+    var message = 'Mouse position: ' + mousePos.x + ','
+      + mousePos.y;
+    console.log(message);
+    console.log('Hello World')
+  }, false);")
+
+(defun-js %add-frame-mouse-listener ()
+  "function init_listener() {
+ if (window.Event) {
+	document.captureEvents(Event.MOUSEMOVE);
+	}
+    document.onmousemove = getCursorXY;
+}
+
+function getCursorXY(e) {   
+    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+    CurX = CurX - 12;
+    CurY = CurY - 12;
+    writeMessage(newCanvas, CurX + ', ' + CurY);
+    //console.log(CurX + ', ' + CurY);
+}")
